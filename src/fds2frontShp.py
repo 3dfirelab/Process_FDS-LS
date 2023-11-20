@@ -1,3 +1,6 @@
+#Paugam Ronan
+#2023-11-20
+
 import numpy as np 
 import slread
 import importlib 
@@ -61,7 +64,7 @@ if __name__ == '__main__':
 
     importlib.reload(slread)
 
-    parser = argparse.ArgumentParser(description='map WII')
+    parser = argparse.ArgumentParser(description='extract fire perimeters from FDS level set simulation')
     parser.add_argument('-p','--path2FDSdir', help='fds simulation directory path',required=True)
     parser.add_argument('-slcPhiId','--slcPhiId', help='id number of the slc level set variable',required=False)
     parser.add_argument('-sF','--skipFrame', help='number of frame to skip',required=False)
