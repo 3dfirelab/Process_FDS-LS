@@ -1,5 +1,5 @@
 # FDS-LS 2 GIS 
-This code process outputs from FDS-Level set (FDS-LS) simualtion into data array format that can be open in GIS software. It is expecting simulated set using the `qgis2fds` pluging of `QGIS`.
+This code process outputs from FDS-Level set (FDS-LS) simualtion into data array format that can be open in GIS software. It is expecting simulation set using the `qgis2fds` pluging of `QGIS`.
 
 # How to run:
 To run the code:
@@ -33,7 +33,8 @@ options:
 
 # Outputs:
 The outputs are: 
-- `BB`: Biomass Burnt, the amount of vegetation burnt (kg) as prescribed form by the rothermel-Albini model used in FDS-LS.
+- `BB`: Biomass Burnt, the amount of vegetation burnt (kg) as prescribed form by the rothermel-Albini model used in FDS-LS. To compute BB you need to add in the default `qgis2fds` configuration file a line to save `MASS FLUX` in the boundary files, 
+```&BNDF QUANTITY='MASS FLUX' /``` 
 - `arrivalTimeFront`: the map of time of arrival extracted from the level set variable (phi).
 - `arrivalTime`: the map of arrival time interpolated.
 - ROS: Rate of Spread in (m/s) computed from the interpolated arrival time map.
