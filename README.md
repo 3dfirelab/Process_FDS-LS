@@ -1,35 +1,42 @@
-# what it does
-Simple code to extract fire perimeter from FDS Level set fire front simulation. perimeters are save as shape files that can be imported in QGIS. 
+# FDS-LS 2 GIS 
+This code process outputs from FDS-Level set (FDS-LS) simualtion into data array format that can be open in GIS software. It is expecting simulated set using the `qgis2fds` pluging of `QGIS`.
 
-# available data
-Topography and 'LEVEL SET VALUE' slice files of a coarse simulation setup with the [qgis2fds](https://github.com/firetools/qgis2fds) plugin of QGIS are available in `testData/LS4/`
-
-# to run the extraction
+# How to run:
+To run the code:
 ```
-python ./src/fds2frontShp.py -p ./testData/LS4/ -sF 50
+$python fdsls2gis.py -p path2your-FDSLS-Simulation
 ```
-output shape file is saved in the simulation directory. 
 
-For input parameters definition run
+for help see 
 ```
-python ./src/fds2frontShp.py -h
-usage: fds2frontShp.py [-h] -p PATH2FDSDIR [-slcPhiId SLCPHIID]
-                       [-sF SKIPFRAME]
+$pyhton fdsls2gis.py -h
+usage: fdsls2gis.py [-h] -p PATH2FDSDIR [-slcPhiId SLCPHIID] [-bfMLRId BFMLRID] [-sF SKIPFRAME] [-tE TIMEEND]
 
-extract fire perimeters from FDS level set simulation
+extracts fire perimeters from slive file of FDS level set, and compute ROS. It also computes biomass burnt from
+boundary file of MASS FLUX
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -p PATH2FDSDIR, --path2FDSdir PATH2FDSDIR
                         fds simulation directory path
   -slcPhiId SLCPHIID, --slcPhiId SLCPHIID
                         id number of the slc level set variable
+  -bfMLRId BFMLRID, --bfMLRId BFMLRID
+                        id number of the bndf MASS FLUX variable
   -sF SKIPFRAME, --skipFrame SKIPFRAME
                         number of frame to skip
+  -tE TIMEEND, --timeEnd TIMEEND
+                        timeEnd, to for example if the simulation crashes before the end
+
 ```
 
-# requirements
-* cv2
-* geopandas 
-* scipy
-* shapely
+
+# Outputs:
+The outputs are: 
+- `BB`: Biomass Burnt, the amount of vegetation burnt (kg) as prescribed form by the rothermel-Albini model used in FDS-LS.
+- `arrivalTimeFront`: the map of time of arrival extracted from the level set variable (phi).
+- `arrivalTime`: the map of arrival time interpolated.
+- ROS: Rate of Spread in (m/s) computed from the interpolated arrival time map.
+- burntarea:  the final level set variable, showing the burnt area.
+- terrainFDS: the terrain imported in FDS-LS.
+
