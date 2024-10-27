@@ -37,7 +37,7 @@ The outputs are:
 ```&BNDF QUANTITY='MASS FLUX' /``` 
 - `arrivalTimeFront`: the map of time of arrival extracted from the level set variable (phi).
 - `arrivalTime`: the map of arrival time interpolated.
-- ROS: Rate of Spread in (m/s) computed from the interpolated arrival time map.
-- burntarea:  the final level set variable, showing the burnt area.
-- terrainFDS: the terrain imported in FDS-LS.
+- `ROS`: Rate of Spread in (m/s) computed from the interpolated arrival time map.
+- `burntarea`:  the final level set variable, showing the burnt area.
+- `terrainFDS`: the terrain imported in FDS-LS.
 
