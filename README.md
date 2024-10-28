@@ -4,6 +4,7 @@ This code process outputs from FDS-Level set (FDS-LS) simualtion into data array
 # How to run:
 To run the code:
 ```
+cd ./src/
 $python fdsls2gis.py -p path2your-FDSLS-Simulation
 ```
 
